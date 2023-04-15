@@ -1,25 +1,28 @@
 {
-  "name": "type",
+  "name": "types",
   "version": "1.0.0",
-  "description": "Check data types in javascript",
+  "description": "Check the type of JavaScript value",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/scopewu/type.git"
+    "url": "git+https://github.com/scopewu/types.git"
   },
   "keywords": [
     "type",
     "types in javascript",
     "check type",
-    "isType"
+    "isType",
+    "isDate",
+    "isNumber",
+    "isRegExp"
   ],
   "author": "scope.wu <scope.wu@gmail.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/scopewu/type/issues"
+    "url": "https://github.com/scopewu/types/issues"
   },
-  "homepage": "https://github.com/scopewu/type#readme"
+  "homepage": "https://github.com/scopewu/types#readme"
 }

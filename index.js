@@ -1,8 +1,13 @@
 const toString = Object.prototype.toString;
 
+/**
+ * get `toString.call()` result
+ * @param value {*} The value to call `toString.call()`
+ * @returns {string|string} Return `toString.call()` result
+ */
 function getTag(value) {
   if (value == null) {
-    return value === undefined ? '[object Undefined]' : '[object Null]'
+    return value === undefined ? '[object Undefined]' : '[object Null]';
   }
   return toString.call(value);
 }
@@ -19,14 +24,22 @@ function getTag(value) {
  * @param value {*} The value to get class name
  * @return {string} Return [[Class]] name
  */
-function getClass(value) {
+export function getClass(value) {
   return /^\[object (.*)]$/.exec(getTag(value))[1];
 }
 
+/**
+ * generator isType function
+ * @param type {string} The type name
+ * @returns {function(*): boolean}
+ */
 function isType(type) {
   const cls = '[object ' + type + ']';
+  /**
+   * Check if value is a type
+   */
   return function (value) {
-    return getTag(value) === cls
+    return getTag(value) === cls;
   }
 }
 
@@ -35,22 +48,22 @@ function isType(type) {
  * @param value {*} The value to check
  * @return {boolean} Return true if value is a date
  */
-const isDate = isType('Date');
+export const isDate = isType('Date');
 
 /**
  * Check if value is a regexp
  * @param value {*} The value to check
  * @return {boolean} Return true if value is a regexp
  */
-const isRegExp = isType('RegExp');
+export const isRegExp = isType('RegExp');
 
 /**
  * Check if value is a bool value
  * @param value {*} The value to check
  * @return {boolean} Return true if value is a bool
  */
-const isBoolean = function (value) {
-  return value === true || value === false || isType('Boolean')
+export const isBoolean = function (value) {
+  return value === true || value === false || isType('Boolean');
 }
 
 /**
@@ -58,7 +71,7 @@ const isBoolean = function (value) {
  * @param value {*} The value to check
  * @return {boolean} Return true if value is a number
  */
-const isNumber = function (value) {
+export const isNumber = function (value) {
   return typeof value === 'number' || isType('Number');
 }
 
@@ -67,7 +80,7 @@ const isNumber = function (value) {
  * @param value {*} The value to check
  * @return {boolean} Return true if value is a string
  */
-const isString = function (value) {
+export const isString = function (value) {
   return typeof value === 'string' || isType('String');
 }
 
@@ -76,24 +89,24 @@ const isString = function (value) {
  * @param value {*} The value to check
  * @return {boolean} Return true if value is a function
  */
-const isFunction = function (value) {
+export const isFunction = function (value) {
   return typeof value === 'function' || isType('Function');
 }
 
 /**
- * Check if value is a Array object
+ * Check if value is an Array object
  * @param value {*} The value to check
  * @return {boolean} Return true if value is a array
  */
-const isArray = Array.isArray || isType('Array');
+export const isArray = Array.isArray || isType('Array');
 
 /**
  * Check if value is NaN
  * @param value {*} The value of check
  * @return {boolean} Return true if value is NaN
  */
-const isNaN = Number.isNaN || function(value) {
-  return typeof value === 'number' || isNaN(value)
+export const isNaN = Number.isNaN || function(value) {
+  return typeof value === 'number' || isNaN(value);
 }
 
 /**
@@ -101,10 +114,19 @@ const isNaN = Number.isNaN || function(value) {
  * @param value {*} The value to check
  * @return {boolean} Return true if value is not null or undefined
  */
-function isDefined(value) {
-  return value != null
+export function isDefined(value) {
+  return value != null;
 }
 
-
-
-
+export default {
+  getClass,
+  isDate,
+  isRegExp,
+  isBoolean,
+  isNumber,
+  isString,
+  isFunction,
+  isArray,
+  isNaN,
+  isDefined
+}
